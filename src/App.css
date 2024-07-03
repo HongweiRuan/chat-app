@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,33 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+/* src/App.css */
+
+.chat-app {
+  display: flex;
+  height: 100vh;
+}
+
+.user-list {
+  width: 20%;
+  border-right: 1px solid #ccc;
+  padding: 10px;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.message-list {
+  flex-grow: 1;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.message-input {
+  padding: 10px;
 }
