@@ -1,11 +1,17 @@
-import React from 'react';
+import React from "react";
+import PropTypes from 'prop-types'
+import AddMessage from "./AddMessage";
 
-function Message({ text }) {
-  return (
-    <div className="message">
-      {text}
-    </div>
-  );
+const Message = ({message, author}) => (
+  <p>
+    <i>{author}</i>: {message}
+
+  </p>
+)
+
+AddMessage.propTypes = {
+  message: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired
 }
 
-export default Message;
+export default Message
