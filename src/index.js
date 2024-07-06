@@ -1,16 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit'
+import createSagaMiddleware from 'redux-saga'
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit'
+import reducers from './reducers'
+import setupSocket from './sockets';
+import handleNewMessage from './sagas'
+import username from './utils/name'
 
-import chat from './reducers'
+const sagaMiddleware = createSagaMiddleware()
 
 const store = configureStore({
-  reducer: chat,
+  reducer: reducers,
+  middleware: [sagaMiddleware]
 })
+
+const socket = setupSocket(store.dispatch, username)
+
+sagaMiddleware.run(handleNewMessage, {socket, username})
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
