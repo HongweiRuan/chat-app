@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, applyMiddleware } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
 
 import './index.css';
@@ -14,10 +14,16 @@ import username from './utils/name'
 
 const sagaMiddleware = createSagaMiddleware()
 
+// const store = configureStore({
+//   reducer: reducers,
+//   middleware: [applyMiddleware(sagaMiddleware)]
+// })
 const store = configureStore({
   reducer: reducers,
-  middleware: [sagaMiddleware]
-})
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(sagaMiddleware)
+});
+
 
 const socket = setupSocket(store.dispatch, username)
 

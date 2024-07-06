@@ -1,4 +1,5 @@
 // import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import { Sidebar } from "./containers/SideBar"
 import { MessagesList } from "./containers/MessagesList"
